@@ -1,3 +1,17 @@
-export { Application, HTTPKernel, RouteMap, Services } from "../denova/mod.ts";
-export { Router, Config } from "../denova/facades.ts";
-export { app } from "../denova/app.ts";
+export {
+    Application,
+    HTTPKernel,
+    ConsoleKernel,
+    RouteMap,
+    Services
+} from "https://deno.land/x/denova@0.1.2/mod.ts";
+
+export {
+    Router,
+    Config
+} from "https://deno.land/x/denova@0.1.2/facades.ts";
+
+export {
+    app,
+    version as DENOVA_VERSION
+} from "https://deno.land/x/denova@0.1.2/app.ts";

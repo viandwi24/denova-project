@@ -30,5 +30,5 @@ const app = Application;
 | back to the client's
 |
 */
-const request = app.make('http.kernel');
-request.capture();
+const console = app.make('console.kernel');
+console.handle();
