@@ -22,3 +22,7 @@ Router.get("/home", "HomeController@index");
 Router.get("/my-api", () => {
     return { name: 'Alfian', address: "Kab. Mojokerto, Jawa Timur" };
 });
+
+// example api
+Router.get("/api/user", "ApiController@index");
+Router.get("/api/user/:id", "ApiController@show");

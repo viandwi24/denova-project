@@ -7,4 +7,5 @@ export class HomeController {
     index() {
         return 'hello world using a controller';
     }
+    
 }
