@@ -5,7 +5,8 @@
  * @author   Alfian Dwi Nugraha <viandwicyber@gmail.com>
  */
 
-import Application from "./bootstrap/app.ts";
+import { Application, HTTPKernel } from "./bootstrap/app.ts";
+export { Application };
 
 /*
 |--------------------------------------------------------------
@@ -30,5 +31,5 @@ const app = Application;
 | back to the client's
 |
 */
-const request = app.make('http.kernel');
+const request = app.make(HTTPKernel);
 request.capture();

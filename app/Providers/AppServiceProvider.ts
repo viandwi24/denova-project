@@ -1,22 +1,16 @@
-export default class AppServiceProvider {
-    /**
-     * Cnstrucor Service
-     */
-    constructor() {
-        // console.log("[AppServiceProvider] constructor caled")
+import { ServiceProvider, Service, Application } from "../../mod.ts";
+
+@Service()
+export class AppServiceProvider implements ServiceProvider {
+    constructor(private app: Application) {
+        
     }
 
-    /**
-     * Register any application services.
-     */
-    register() {
-        // console.log("[AppServiceProvider] register called.");
+    public register() {
+
     }
 
-    /**
-     * Bootstrap any application services.
-     */
-    boot() {
-        // console.log("[AppServiceProvider] boot called.");
+    public boot() {
+
     }
 }

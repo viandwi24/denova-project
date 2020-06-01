@@ -5,7 +5,7 @@
  * @author   Alfian Dwi Nugraha <viandwicyber@gmail.com>
  */
 
-import Application from "./bootstrap/app.ts";
+import { Application, ConsoleKernel } from "./bootstrap/app.ts";
 
 /*
 |--------------------------------------------------------------
@@ -30,5 +30,5 @@ const app = Application;
 | back to the client's
 |
 */
-const console = app.make('console.kernel');
+const console = app.make(ConsoleKernel);
 console.handle();

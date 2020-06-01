@@ -1,17 +1,20 @@
 export {
+    version,
     Application,
+    Services,
     HTTPKernel,
+    RouteCollection,
+    Request,
+    Response,
     ConsoleKernel,
-    RouteMap,
-    Services
-} from "https://deno.land/x/denova@0.1.2/mod.ts";
-
-export {
+    env,
     Router,
-    Config
-} from "https://deno.land/x/denova@0.1.2/facades.ts";
-
-export {
-    app,
-    version as DENOVA_VERSION
-} from "https://deno.land/x/denova@0.1.2/app.ts";
+    Env,
+    Config,
+    Service,
+    Inject,
+    ServiceProvider,
+    require,
+    View,
+    view,
+} from "https://deno.land/x/denova@0.1.3/mod.ts";

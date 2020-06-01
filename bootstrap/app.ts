@@ -1,29 +1,53 @@
+import "https://cdn.pika.dev/@abraham/reflection@^0.7.0";
+import {
+    Application as ApplicationContainer,
+    HTTPKernel,
+    ConsoleKernel,
+    Services,
+    version,
+    Config,
+    RouteCollection,
+    require,
+} from "../mod.ts";
+import { BootstrapConfig, root } from "./config.ts";
+
 /**
- * Denova - A Typescript Framework for Deno
- *
- * @package  Denova
- * @author   Alfian Dwi Nugraha <viandwicyber@gmail.com>
+ * Create a container
+ * Denova work in a Container, just Make Application Container for all services
  */
-import { Application, HTTPKernel, ConsoleKernel, Config, Services } from "../mod.ts"
+const app = new ApplicationContainer();
 
-// define var
-let root = Deno.cwd();
+/**
+ * Bootstrap a config
+ * for Config and any var, we bootstrapping for all config.
+ */
+await BootstrapConfig();
 
-// create container
-const app = new Application();
+/**
+ * Bind a service
+ * This a standart service kernel, bind to container and resolve in another time.
+ */
+app.bind('denova.path', root);
+app.bind('denova.version', version);
+app.bind(HTTPKernel);
+app.bind(ConsoleKernel);
+app.singleton(RouteCollection);
+app.singleton(Services);
 
-// bind a services and variable
-app.singleton('denova.path', root);
-app.singleton(new Services);
-app.singleton('http.kernel', new HTTPKernel);
-app.singleton('console.kernel', new ConsoleKernel);
+/**
+ * Load middleware
+ */
+let kernel_path = root + "/app/Http/kernel.ts";
+let middleware = await require(kernel_path);
+app.bind('middleware', middleware);
 
-// load config
-await Config.load();
+/**
+ * Run a services
+ * we resolve services and run services
+ */
+let services = Config.get('app').services;
+await app.make(Services).run(services);
 
-// run services
-await app.make('Services').load( Config.get('app').services );
-
-
-/** export */
-export default app;
+/** export application container */
+export const Application = app;
+export { HTTPKernel, ConsoleKernel };

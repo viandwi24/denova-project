@@ -1,12 +1,17 @@
-import { RouteMap, app } from "../../mod.ts";
+import { ServiceProvider, Service, Application, Router } from "../../mod.ts";
 
-export default class RouteServiceProvider {
-
-    register() {
+@Service()
+export class RouteServiceProvider implements ServiceProvider {
+    constructor(private app: Application) {
     }
 
-    boot() {
-        let root = app().make('denova.path');
-        RouteMap.load(root + "/routes/web.ts");
+    public register() {
+        
+    }
+
+    // register file routes/web.ts to route collection
+    public async boot() {
+        let root = this.app.make('denova.path');
+        await Router.group({}, `${root}/routes/web.ts`);
     }
 }
