@@ -17,4 +17,6 @@ export {
     require,
     View,
     view,
+    response,
+    Middleware,
 } from "https://deno.land/x/denova@0.1.3/mod.ts";
